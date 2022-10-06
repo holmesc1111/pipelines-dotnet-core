@@ -15,7 +15,9 @@ steps:
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'New-Item ''save'' -ItemType Directory'
+    script: |
+      New-Item 'save' -ItemType Directory
+      gci
     failOnStderr: true
     pwsh: true
 
