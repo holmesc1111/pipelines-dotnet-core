@@ -13,6 +13,11 @@ pool:
 
 steps:
 - task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: 'New-Item ''save'' -ItemType Directory'
+    failOnStderr: true
+    pwsh: true
 
 - script: echo '$(Build.BuildNumber)' # outputs customized build number like project_def_master_20200828.1
   displayName: 'Run a one-line script'
