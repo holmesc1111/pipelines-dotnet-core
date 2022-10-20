@@ -11,6 +11,8 @@ stages:
     jobs:
     - job: Job1
       variables: 
+      - name: versionMajorMinorPatch
+        value: 1.2.1
       - name: versionRevision
         value: $[counter(${{variables.versionMajorMinorPatch}}, 0)]
 
