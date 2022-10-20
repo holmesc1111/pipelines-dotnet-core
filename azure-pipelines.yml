@@ -12,9 +12,9 @@ stages:
     - job: Job1
       variables: 
       - name: versionMajorMinorPatch
-        value: 1.2.1
+        value: 1.1.803
       - name: versionRevision
-        value: $[counter(${{variables.versionMajorMinorPatch}}, 0)]
+        value: $[counter(${{variables.versionMajorMinorPatch}}, 1259)]
 
       pool:
         vmImage: ubuntu-latest
