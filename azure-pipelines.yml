@@ -5,28 +5,31 @@
 
 trigger:
 - master
+stages:
+  - stage: FirstStage
+  jobs:
+    - job: Job1
+    variables: 
+    - name: versionRevision
+      value: $[counter(${{variables.versionMajorMinorPatch}}, 0)]
 
-variables: 
-- name: versionRevision
-  value: $[counter(${{variables.versionMajorMinorPatch}}, 0)]
+    pool:
+      vmImage: ubuntu-latest
 
-pool:
-  vmImage: ubuntu-latest
+    steps:
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          New-Item 'save' -ItemType Directory
+          gci
+        failOnStderr: true
+        pwsh: true
 
-steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      New-Item 'save' -ItemType Directory
-      gci
-    failOnStderr: true
-    pwsh: true
+    - script: echo '${{variables.versionMajorMinorPatch}}.$(versionRevision)' # outputs customized build number like project_def_master_20200828.1
+      displayName: 'Run a one-line script'
 
-- script: echo '${{variables.versionMajorMinorPatch}}.$(versionRevision)' # outputs customized build number like project_def_master_20200828.1
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - script: |
+        echo Add other tasks to build, test, and deploy your project.
+        echo See https://aka.ms/yaml
+      displayName: 'Run a multi-line script'
