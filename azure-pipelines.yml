@@ -4,3 +4,5 @@ trigger:
 
 extends:
   template: simple-param.yml
+  parameters:
+    yesNo: false
