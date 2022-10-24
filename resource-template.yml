@@ -1,10 +1,10 @@
 resources:
   repositories:
-    - repository: scripts
+    - repository: template_scripts
       type: github
       name: healthwise/go.scripts.templates
       endpoint: DevOps
       
 steps:
-- checkout: scripts
+- checkout: template_scripts
   path: "s/scripts"
