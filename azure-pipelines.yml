@@ -9,10 +9,8 @@ resources:
     name: holmesc1111/pipelines-dotnet-core
     endpoint: DevOps
 
-extends:
-  template: resource-template.yml@template_scripts
-
 jobs:
   - job: setup
     steps:
+    - template: resource-template.yml@template_scripts
     - template: setup.yml@template_scripts
