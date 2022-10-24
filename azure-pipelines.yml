@@ -11,3 +11,6 @@ resources:
 
 extends:
   template: resource-template.yml@template_scripts
+
+steps:
+  -template: setup.yml@template_scripts
