@@ -1,6 +1,6 @@
 # File: azure-pipelines.yml
 trigger:
-- main
+- master
 
 extends:
-  template: simple-param.yml
+  template: template_scripts
