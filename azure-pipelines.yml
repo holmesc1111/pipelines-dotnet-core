@@ -6,7 +6,7 @@ resources:
   repositories:
   - repository: template_scripts
     type: github
-    name: pipelines-dotnet-core/resource-template.yml
+    name: holmesc1111/pipelines-dotnet-core
 
 extends:
   template: resource-template.yml@template_scripts
