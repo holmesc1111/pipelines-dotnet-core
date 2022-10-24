@@ -3,4 +3,4 @@ trigger:
 - master
 
 extends:
-  template: template_scripts
+  template: resource-template.yml@template_scripts
