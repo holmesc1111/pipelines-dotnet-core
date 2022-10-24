@@ -6,8 +6,7 @@ resources:
   repositories:
   - repository: template_scripts
     type: github
-    name: healthwise/go.scripts.templates
-    endpoint: DevOps
+    name: pipelines-dotnet-core/resource-template.yml
 
 extends:
   template: resource-template.yml@template_scripts
