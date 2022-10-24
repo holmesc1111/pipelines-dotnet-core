@@ -1,15 +1,19 @@
 # File: azure-pipelines.yml
 trigger:
-- master
+- none
 
 resources:
   repositories:
-  - repository: template_scripts
-    type: github
-    name: holmesc1111/pipelines-dotnet-core
-    endpoint: DevOps
+    - repository: scripts
+      type: github
+      name: healthwise/go.scripts.templates
+      endpoint: DevOps
 
 jobs:
   - job: setup
-    steps:    
+    steps:  
+    - checkout: self
+      path: "s/source"
+    - checkout: scripts
+      path: "s/scripts"
     - template: setup.yml@template_scripts
