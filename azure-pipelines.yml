@@ -2,5 +2,11 @@
 trigger:
 - master
 
+resources:
+  repository: template_scripts
+  type: github
+  name: healthwise/go.scripts.templates
+  endpoint: DevOps
+
 extends:
   template: resource-template.yml@template_scripts
