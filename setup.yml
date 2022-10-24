@@ -1,0 +1,32 @@
+steps:
+  - task: AzureKeyVault@2
+    displayName: 'Get Key vault'
+    inputs:
+      azureSubscription: 'MID-Dev-DevOps-VMSS'
+      KeyVaultName: 'KV-Dev-USW-Products-HW'
+      SecretsFilter: 'AZDEVOPSPIPELINE-S3-ACCESSKEY,AZDEVOPSPIPELINE-S3-ACCESSSECRET,MYGET-PACKAGES-PAT,AZDEVOPSPIPELINE-HYDRA-APIKEY'
+      RunAsPreJob: true
+      
+  - task: PowerShell@2
+    displayName: 'Create save directory'
+    inputs: 
+      targetType: 'inline'
+      script: New-Item 'save' -ItemType Directory
+      failOnStderr: true
+      pwsh: true
+      
+  - task: PowerShell@2
+    displayName: 'Create time stamp file'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./scripts/Templates/web_build/Create-TimeStampFile.ps1 
+      arguments: > # Use this to avoid newline characters in multiline string
+        -RepoPath  'source'
+        -TimestampFile  'save/timestamp.txt'
+
+  - task: UseDotNet@2
+    displayName: 'Use .NET 6 sdk'
+    inputs:
+      packageType: sdk
+      version: 6.x
+      installationPath: $(Agent.ToolsDirectory)/dotnet
