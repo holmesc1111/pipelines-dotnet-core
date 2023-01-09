@@ -3,7 +3,7 @@
   <metadata>
     <id>holmes.testing.app</id>
     <version>1.0.0.*</version>
-    <title>Holmes testing application/title>
+    <title>Holmes testing application</title>
     <authors>Chris Holmes</authors>
     <owners>Healthwise</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
