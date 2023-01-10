@@ -2,6 +2,12 @@
 trigger:
 - none
 
+variables:
+  - name: version
+    value: '1.0.0.1'
+  - name: hydraPackageName
+    value: 'org.test.package'
+
 resources:
   repositories:
     - repository: scripts
@@ -22,3 +28,10 @@ jobs:
     - checkout: scripts
       path: "s/scripts"
     - template: setup.yml@template_scripts
+    - task: PowerShell@2
+      displayName: 'Create file'
+      inputs:
+        targetType: inline
+        script: |
+          $payload = @{Version = ${{variables.version}} ArtifactName = ${{varaibles.hydraPackageName}}}
+          $payload | ConvertTo-Json | Set-Content ./deploy_metadata.json
