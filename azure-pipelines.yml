@@ -4,7 +4,7 @@ trigger:
 
 variables:
   - name: version
-    value: '1'
+    value: '1.0.0.abc'
   - name: hydraPackageName
     value: 'org.test.package'
   - name: projectName
