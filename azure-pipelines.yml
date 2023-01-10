@@ -7,6 +7,8 @@ variables:
     value: '1.0.0.1'
   - name: hydraPackageName
     value: 'org.test.package'
+  - name: projectName
+    value: 'application/.'
 
 resources:
   repositories:
@@ -30,5 +32,13 @@ jobs:
       inputs:
         targetType: inline
         script: |
-          $payload = @{Version = "${{variables.version}}";ArtifactName = "${{variables.hydraPackageName}}"}
+          $payload = @{Version = "${{variables.version}}";ArtifactName = "${{variables.hydraPackageName}}";Content = "${{variables.projectName}} -replace '\/\.*$',''"}
           $payload | ConvertTo-Json | Set-Content ./deploy_metadata.json
+
+    - task: PowerShell@2
+      displayName: 'Output JSON file'
+      inputs:
+        targetType: inline
+        script: |
+          $metadata = Get-Content -Path './deploy_metadata.json' | ConvertFrom-Json
+          Write-Output $metadata
