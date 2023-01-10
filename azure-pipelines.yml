@@ -32,4 +32,4 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-          if (!("${{ variables.version }}" -match '^\d{1,5}(\.\d{1,5}){2,3}$')) {Write-Error "Bad version number supplied. Must be 3 or 4 octets using only numbers. Example: 1.0.0. 1.0.0.0. Version supplied was ${{ variables.version }}";Exit 1}
+          if (!("${{ variables.version }}" -match '^\d{1,5}(\.\d{1,5}){2,3}$')) {Write-Error "Bad version number supplied. Must be 3 or 4 octets using only numbers. Example: 1.0.0 or 1.0.0.0. Version supplied was: ${{ variables.version }}";Exit 1}
