@@ -33,5 +33,5 @@ jobs:
       inputs:
         targetType: inline
         script: |
-          $payload = @{Version = ${{variables.version}} ArtifactName = ${{varaibles.hydraPackageName}}}
+          $payload = @{Version = ${{variables.version}} ArtifactName = ${{variables.hydraPackageName}}}
           $payload | ConvertTo-Json | Set-Content ./deploy_metadata.json
