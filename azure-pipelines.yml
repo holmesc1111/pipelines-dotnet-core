@@ -28,17 +28,8 @@ jobs:
     - checkout: self
       path: "s/source"
     - task: PowerShell@2
-      displayName: 'Create file'
+      displayName: 'Validate version number'
       inputs:
-        targetType: inline
+        targetType: 'inline'
         script: |
-          $payload = @{Version = "${{variables.version}}";ArtifactName = "${{variables.hydraPackageName}}";Content = "${{variables.projectName}}" -replace '\/\.*$',''}
-          $payload | ConvertTo-Json | Set-Content ./deploy_metadata.json
-
-    - task: PowerShell@2
-      displayName: 'Output JSON file'
-      inputs:
-        targetType: inline
-        script: |
-          $metadata = Get-Content -Path './deploy_metadata.json' | ConvertFrom-Json
-          Write-Output $metadata
+          if (!(${{ variables.buildNversionumber }} -match '^\d{1,5}(\.\d{1,5}){2,3}$')) {Write-Error 'Bad version number supplied. Must be 3 or 4 octets using only numbers. Example: 1.0.0. 1.0.0.0' Exit 1}
