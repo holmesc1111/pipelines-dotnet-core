@@ -32,7 +32,7 @@ jobs:
       inputs:
         targetType: inline
         script: |
-          $payload = @{Version = "${{variables.version}}";ArtifactName = "${{variables.hydraPackageName}}";Content = "${{variables.projectName}} -replace '\/\.*$',''"}
+          $payload = @{Version = "${{variables.version}}";ArtifactName = "${{variables.hydraPackageName}}";Content = "${{variables.projectName}}" -replace '\/\.*$',''}
           $payload | ConvertTo-Json | Set-Content ./deploy_metadata.json
 
     - task: PowerShell@2
