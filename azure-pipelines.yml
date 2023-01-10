@@ -25,9 +25,6 @@ jobs:
     steps:  
     - checkout: self
       path: "s/source"
-    - checkout: scripts
-      path: "s/scripts"
-    - template: setup.yml@template_scripts
     - task: PowerShell@2
       displayName: 'Create file'
       inputs:
