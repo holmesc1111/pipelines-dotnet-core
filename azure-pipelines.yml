@@ -34,5 +34,5 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-            if (${{ variables.azureDevOpsEnvironment }} -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;]'dev'" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;]"${{ variables.azureDevOpsEnvironment }}""}
+            if ("${{ variables.azureDevOpsEnvironment }}" -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;]'dev'" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;]"${{ variables.azureDevOpsEnvironment }}""}
             Write-Output "Environment name is $(hydraEnvironment)"
