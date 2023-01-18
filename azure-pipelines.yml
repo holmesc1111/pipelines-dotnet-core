@@ -40,4 +40,4 @@ jobs:
       inputs:
         targetType: inline
         script: |
-          Write-Output "Environment name is $(env:hydraEnvironment)"
+          Write-Output "Environment name is $(hydraEnvironment)"
