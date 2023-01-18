@@ -10,7 +10,7 @@ variables:
   - name: projectName
     value: 'application/.'
   - name: azureDevOpsEnvironment
-    value: 'development'
+    value: 'test'
 
 resources:
   repositories:
