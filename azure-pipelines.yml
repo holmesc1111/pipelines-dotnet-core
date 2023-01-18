@@ -9,7 +9,7 @@ variables:
     value: 'org.test.package'
   - name: projectName
     value: 'application/.'
-  - name: varE
+  - name: azureDevOpsEnvironment
     value: 'development'
 
 resources:
@@ -34,5 +34,5 @@ jobs:
       inputs:
         targetType: 'inline'
         script: |
-            if (${{ variables.varE }} -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;]'dev'" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;]"${{ parameters.azureDevOpsEnvironment }}""}
+            if (${{ variables.azureDevOpsEnvironment }} -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;]'dev'" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;]"${{ variables.azureDevOpsEnvironment }}""}
             Write-Output "Environment name is $(hydraEnvironment)"
