@@ -31,13 +31,20 @@ jobs:
       path: "s/source"
     - task: PowerShell@2
       displayName: 'Set Hydra environment name'
+      name: passOutput
       inputs:
         targetType: 'inline'
         script: |
-            if ("${{ variables.azureDevOpsEnvironment }}" -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;]dev" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;]${{ variables.azureDevOpsEnvironment }}"}
+            if ("${{ variables.azureDevOpsEnvironment }}" -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment;isoutput=true]dev" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment;isoutput=true]${{ variables.azureDevOpsEnvironment }}"}
+  - job: run
+    dependsOn: setup
+    variables:
+      setHydraEnviornmentName: $[dependencies.setup.outputs['passOutput.hydraEnvironment']]
+
+    steps:
     - task: PowerShell@2
       displayName: 'Output Hydra environment name'           
       inputs:
         targetType: inline
         script: |
-          Write-Output "Environment name is $(hydraEnvironment)"
+          Write-Output "Environment name is $(setHydraEnviornmentName)"
