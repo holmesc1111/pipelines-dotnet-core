@@ -35,5 +35,5 @@ jobs:
         targetType: 'inline'
         script: |
             # Hydra environment name is 'dev' where Azure DevOps environment name is 'development'
-            if ("${{ variables.azureDevOpsEnvironment }}" -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment]dev" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment]${{ parameters.azureDevOpsEnvironment }}"}
+            if (${{ variables.azureDevOpsEnvironment }} -match '(dev).*') { Write-Host "##vso[task.setvariable variable=hydraEnvironment]dev" } else {Write-Host "##vso[task.setvariable variable=hydraEnvironment]${{ parameters.azureDevOpsEnvironment }}"}
             Write-Output "Environment name is $(hydraEnvironment)"
